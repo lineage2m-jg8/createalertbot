@@ -800,6 +800,8 @@ async def LadderFunc(number, ladderlist, channelVal):
 			color=0xff00ff
 			)
 		await channelVal.send(embed=embed, tts=False)
+		await MakeSound('축하합니다.'+result_ladderSTR+'님이.' + '당첨되었습니다.', './sound/say')
+		await PlaySound(voice_client1, './sound/say.wav')
 	else:
 		await channelVal.send('```추첨인원이 총 인원과 같거나 많습니다. 재입력 해주세요```', tts=False)
 
