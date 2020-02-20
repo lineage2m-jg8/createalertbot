@@ -790,18 +790,17 @@ async def JointheVC(VCchannel, TXchannel):
 		await TXchannel.send('음성채널에 먼저 들어가주세요.', tts=False)
 
 #사다리함수		
-async def LadderFunc(itemkind, number, ladderlist, channelVal):
+async def LadderFunc(number, ladderlist, channelVal):
 	if number < len(ladderlist):
 		result_ladder = random.sample(ladderlist, number)
 		result_ladderSTR = ','.join(map(str, result_ladder))
-		result_itemSTR = itemkind
 		embed = discord.Embed(
-			title = "----- [ " + result_itemSTR + " ] 당첨! -----",
+			title = "----- 당첨! -----",
 			description= '```' + result_ladderSTR + '```',
 			color=0xff00ff
 			)
 		await channelVal.send(embed=embed, tts=False)
-		await MakeSound('축하합니다.'+result_ladderSTR+'님이.' + result_itemSTR + '에 당첨되었습니다.', './sound/say')
+		await MakeSound('축하합니다.'+result_ladderSTR+'님이.' + '당첨되었습니다.', './sound/say')
 		await PlaySound(voice_client1, './sound/say.wav')
 	else:
 		await channelVal.send('```추첨인원이 총 인원과 같거나 많습니다. 재입력 해주세요```', tts=False)
@@ -1039,9 +1038,9 @@ while True:
 					if message.content.startswith(command[11]):
 						ladder = []
 						ladder = message.content[len(command[11])+1:].split(" ")
-						kind_cong = ladder[0]
+						num_cong = int(ladder[0])
 						del(ladder[0])
-						await LadderFunc(kind_cong, 1, ladder, msg.channel)
+						await LadderFunc(num_cong, ladder, msg.channel)
 			
 			################ 정산 특정 채널에서 하기 ################ 
 			if basicSetting[11] != "":
@@ -1492,10 +1491,10 @@ while True:
 
 			if message.content.startswith(command[11]):
 				ladder = []
-				ladder = message.content[len(command[11])+1:].split(" ")				
-				kind_cong = ladder[0]
+				ladder = message.content[len(command[11])+1:].split(" ")
+				num_cong = int(ladder[0])
 				del(ladder[0])
-				await LadderFunc(kind_cong, 1, ladder, client.get_channel(channel))
+				await LadderFunc(num_cong, ladder, client.get_channel(channel))
 				
 			################ 보탐봇 메뉴 출력 ################
 			
@@ -1511,8 +1510,8 @@ while True:
 				command_list += command[8] + '\n'     #!재시작
 				command_list += command[9] + '\n'     #!미예약
 				command_list += command[10] + ' [인원] [금액]\n'     #!분배
-				command_list += command[11] + ' [아이템이름] [아이디1] [아이디2]...\n'     #!사다리
-				command_list += command[12] + ' [아이디]\n'    #!정산
+				command_list += command[11] + ' [뽑을인원수] [아이디1] [아이디2]...\n'     #!사다리
+				command_list += command[12] + ' [아이디]\n'     #!정산
 				command_list += command[13] + ' 또는 ' + command[14] + ' 0000, 00:00\n'     #!보스일괄
 				command_list += command[14] + '\n'     #!q
 				command_list += command[15] + ' [할말]\n'     #!v
