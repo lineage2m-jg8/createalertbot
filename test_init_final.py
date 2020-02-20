@@ -1041,7 +1041,7 @@ while True:
 						ladder = message.content[len(command[11])+1:].split(" ")
 						num_cong = int(ladder[0])
 						del(ladder[0])
-						await LadderFunc(num_cong, ladder, msg.channel)
+						await LadderFunc(itemkind, num_cong, ladder, msg.channel)
 			
 			################ 정산 특정 채널에서 하기 ################ 
 			if basicSetting[11] != "":
@@ -1495,7 +1495,7 @@ while True:
 				ladder = message.content[len(command[11])+1:].split(" ")
 				num_cong = int(ladder[0])
 				del(ladder[0])
-				await LadderFunc(num_cong, ladder, client.get_channel(channel))
+				await LadderFunc(itemkind, num_cong, ladder, client.get_channel(channel))
 				
 			################ 보탐봇 메뉴 출력 ################
 			
