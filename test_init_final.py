@@ -1039,10 +1039,9 @@ while True:
 					if message.content.startswith(command[11]):
 						ladder = []
 						ladder = message.content[len(command[11])+1:].split(" ")
-						num_cong = int(ladder[1])
 						kind_cong = ladder[0]
-						del(ladder[1])
-						await LadderFunc(kind_cong, num_cong, ladder, msg.channel)
+						del(ladder[0])
+						await LadderFunc(kind_cong, 1, ladder, msg.channel)
 			
 			################ 정산 특정 채널에서 하기 ################ 
 			if basicSetting[11] != "":
@@ -1493,11 +1492,10 @@ while True:
 
 			if message.content.startswith(command[11]):
 				ladder = []
-				ladder = message.content[len(command[11])+1:].split(" ")
-				num_cong = int(ladder[1])
+				ladder = message.content[len(command[11])+1:].split(" ")				
 				kind_cong = ladder[0]
-				del(ladder[1])
-				await LadderFunc(kind_cong, num_cong, ladder, client.get_channel(channel))
+				del(ladder[0])
+				await LadderFunc(kind_cong, 1, ladder, client.get_channel(channel))
 				
 			################ 보탐봇 메뉴 출력 ################
 			
@@ -1513,7 +1511,7 @@ while True:
 				command_list += command[8] + '\n'     #!재시작
 				command_list += command[9] + '\n'     #!미예약
 				command_list += command[10] + ' [인원] [금액]\n'     #!분배
-				command_list += command[11] + ' [아이템이름] [뽑을인원수] [아이디1] [아이디2]...\n'     #!사다리
+				command_list += command[11] + ' [아이템이름] [아이디1] [아이디2]...\n'     #!사다리
 				command_list += command[12] + ' [아이디]\n'    름#!정산
 				command_list += command[13] + ' 또는 ' + command[14] + ' 0000, 00:00\n'     #!보스일괄
 				command_list += command[14] + '\n'     #!q
