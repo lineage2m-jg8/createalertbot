@@ -1039,7 +1039,7 @@ while True:
 					if message.content.startswith(command[11]):
 						ladder = []
 						ladder = message.content[len(command[11])+1:].split(" ")
-						num_cong = int(ladder[0])
+						num_cong = int(ladder[1])
 						del(ladder[0])
 						await LadderFunc(itemkind, num_cong, ladder, msg.channel)
 			
@@ -1493,7 +1493,7 @@ while True:
 			if message.content.startswith(command[11]):
 				ladder = []
 				ladder = message.content[len(command[11])+1:].split(" ")
-				num_cong = int(ladder[0])
+				num_cong = int(ladder[1])
 				del(ladder[0])
 				await LadderFunc(itemkind, num_cong, ladder, client.get_channel(channel))
 				
