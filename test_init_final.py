@@ -790,17 +790,18 @@ async def JointheVC(VCchannel, TXchannel):
 		await TXchannel.send('음성채널에 먼저 들어가주세요.', tts=False)
 
 #사다리함수		
-async def LadderFunc(number, ladderlist, channelVal):
+async def LadderFunc(itemkind, number, ladderlist, channelVal):
 	if number < len(ladderlist):
 		result_ladder = random.sample(ladderlist, number)
 		result_ladderSTR = ','.join(map(str, result_ladder))
+		result_itemSTR = itemkind
 		embed = discord.Embed(
-			title = "----- 당첨! -----",
+			title = "----- [ " + result_itemSTR + " ] 당첨! -----",
 			description= '```' + result_ladderSTR + '```',
 			color=0xff00ff
 			)
 		await channelVal.send(embed=embed, tts=False)
-		await MakeSound('축하합니다.'+result_ladderSTR+'님이.' + '당첨되었습니다.', './sound/say')
+		await MakeSound('축하합니다.'+result_ladderSTR+'님이.' + result_itemSTR + '에 당첨되었습니다.', './sound/say')
 		await PlaySound(voice_client1, './sound/say.wav')
 	else:
 		await channelVal.send('```추첨인원이 총 인원과 같거나 많습니다. 재입력 해주세요```', tts=False)
@@ -1038,9 +1039,10 @@ while True:
 					if message.content.startswith(command[11]):
 						ladder = []
 						ladder = message.content[len(command[11])+1:].split(" ")
-						num_cong = int(ladder[0])
-						del(ladder[0])
-						await LadderFunc(num_cong, ladder, msg.channel)
+						num_cong = int(ladder[1])
+						kind_cong = ladder[0]
+						del(ladder[1])
+						await LadderFunc(kind_cong, num_cong, ladder, msg.channel)
 			
 			################ 정산 특정 채널에서 하기 ################ 
 			if basicSetting[11] != "":
@@ -1492,9 +1494,10 @@ while True:
 			if message.content.startswith(command[11]):
 				ladder = []
 				ladder = message.content[len(command[11])+1:].split(" ")
-				num_cong = int(ladder[0])
-				del(ladder[0])
-				await LadderFunc(num_cong, ladder, client.get_channel(channel))
+				num_cong = int(ladder[1])
+				kind_cong = ladder[0]
+				del(ladder[1])
+				await LadderFunc(kind_cong, num_cong, ladder, client.get_channel(channel))
 				
 			################ 보탐봇 메뉴 출력 ################
 			
