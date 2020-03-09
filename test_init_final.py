@@ -627,6 +627,21 @@ async def MakeSound(saveSTR, filename):
 		tts.save('./' + filename + '.wav')
 		pass
 
+
+#mp3 파일 생성함수(gTTS 이용, 남성목소리)
+async def MakeSoundconf(saveSTR, filename):
+	'''
+	
+	'''
+	try:
+		tts = gTTS(saveSTR, lang = 'ko')
+		tts.save('./' + filename + '.mp3')
+	except Exception as e:
+		print (e)
+		tts = gTTS(saveSTR, lang = 'ko')
+		tts.save('./' + filename + '.wav')
+		pass
+
 #mp3 파일 재생함수	
 async def PlaySound(voiceclient, filename):
 	source = discord.FFmpegPCMAudio(filename)
@@ -1533,6 +1548,7 @@ while True:
 				command_list += '[보스명]예상 또는 [보스명]예상 0000, 00:00\n' 
 				command_list += '[보스명]삭제\n'     
 				command_list += '[보스명]메모 [할말]\n'
+				command_list += command[30] + ' [할말]\n'     #!a
 				embed = discord.Embed(
 						title = "----- 명령어 -----",
 						description= '```' + command_list + '```',
@@ -1609,6 +1625,15 @@ while True:
 				await MakeSound(message.author.display_name +'님이.' + sayMessage, './sound/say')
 				await client.get_channel(channel).send("```< " + msg.author.display_name + " >님이 \"" + sayMessage + "\"```", tts=False)
 				await PlaySound(voice_client1, './sound/say.wav')
+
+			################ 음성파일 생성 후 재생 ################ 		
+				
+			if message.content.startswith(command[30]):
+				tmp_sayMessage = message.content
+				sayMessage = tmp_sayMessage[len(command[30])+1:]
+				await MakeSoundconf(sayMessage, './sound/say')
+				await client.get_channel(channel).send( "``` " + sayMessage + "```", tts=False)
+				await PlaySound(voice_client1, './sound/say.mp3')
 
 			################ 보탐봇 재시작 ################ 
 
