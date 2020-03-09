@@ -1548,7 +1548,7 @@ while True:
 				command_list += '[보스명]예상 또는 [보스명]예상 0000, 00:00\n' 
 				command_list += '[보스명]삭제\n'     
 				command_list += '[보스명]메모 [할말]\n'
-				command_list += command[30] + ' [할말]\n'     #!a
+				command_list += command[25] + ' [할말]\n'     #!a
 				embed = discord.Embed(
 						title = "----- 명령어 -----",
 						description= '```' + command_list + '```',
@@ -1628,9 +1628,9 @@ while True:
 
 			################ 음성파일 생성 후 재생 ################ 		
 				
-			if message.content.startswith(command[30]) or message.content.startswith('!ㅁ') or message.content.startswith('!A'):
+			if message.content.startswith(command[25]) or message.content.startswith('!ㅁ') or message.content.startswith('!A'):
 				tmp_sayMessage = message.content
-				sayMessage = tmp_sayMessage[len(command[30])+1:]
+				sayMessage = tmp_sayMessage[len(command[25])+1:]
 				await MakeSoundconf(sayMessage, './sound/say')
 				await client.get_channel(channel).send( "``` " + sayMessage + "```", tts=False)
 				await PlaySound(voice_client1, './sound/say.mp3')
