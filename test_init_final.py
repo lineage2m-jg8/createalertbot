@@ -1628,7 +1628,7 @@ while True:
 
 			################ 음성파일 생성 후 재생 ################ 		
 				
-			if message.content.startswith(command[30]):
+			if message.content.startswith(command[30]) or message.content.startswith('!ㅁ') or message.content.startswith('!A'):
 				tmp_sayMessage = message.content
 				sayMessage = tmp_sayMessage[len(command[30])+1:]
 				await MakeSoundconf(sayMessage, './sound/say')
