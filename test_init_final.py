@@ -1905,7 +1905,7 @@ while True:
 									hours, remainder = divmod(total_seconds,60*60)
 									minutes, seconds = divmod(remainder,60)
 
-									result_lefttime += '[' +  ouput_bossData[i][2]+ '] ' + ouput_bossData[i][0] + ' 탐까지 %02d시 %02d분 %02d초 남았습니다. ' % (hours, minutes, seconds) + '\n'
+									result_lefttime += '[' +  ouput_bossData[i][2]+ '] **' + ouput_bossData[i][0] + '** 탐까지 **%02d시 %02d분 %02d초** 남았습니다. ' % (hours, minutes, seconds) + '\n'
 					else :
 						for j in range(len(sorted_datelist)):
 							for i in range(len(ouput_bossData)):						
@@ -1916,12 +1916,9 @@ while True:
 									hours, remainder = divmod(total_seconds,60*60)
 									minutes, seconds = divmod(remainder,60)
 
-									result_lefttime += '[' +  ouput_bossData[i][2]+ '] ' + ouput_bossData[i][0] + ' 탐까지 %02d시 %02d분 %02d초 남았습니다. ' % (hours, minutes, seconds) + '\n'
-					embed = discord.Embed(
-						description= result_lefttime,
-						color=0xff0000
-						)
-					await client.get_channel(channel).send( embed=embed, tts=False)
+									result_lefttime += '[' +  ouput_bossData[i][2]+ '] **' + ouput_bossData[i][0] + '** 탐까지 **%02d시 %02d분 %02d초** 남았습니다. ' % (hours, minutes, seconds) + '\n'
+					embed = result_lefttime
+					await client.get_channel(channel).send( embed, tts=False)
 
 			################ 보스타임 출력 ################ 
 
